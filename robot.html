@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+        <title>Turtle Power</title>
+        <script src="js/jquery-1.7.min.js"></script>
+        <script type="text/javascript">
+            var $script = [];
+            var $scriptString = [];
+            $(document).ready(function() {
+
+                // Submit Button Junk
+                $("#submit").click(function() {
+                    var $robotUrl = "test.php";
+
+                    $.post($robotUrl, {script: $script}, function(data) {
+                        console.log(data);
+                        $("#script").html("RESULTS! </br>" + data);
+                        $(".command").removeAttr("disabled");
+                        $("#arg").removeAttr("disabled");
+                        $("#submit").removeAttr("disabled");
+                    });
+
+                    $("#script").html("Sending Script!");
+
+                    $script = [];
+                    $scriptString = [];
+
+                    $(".command").attr("disabled", "true");
+                    $("#arg").attr("disabled", "true");
+                    $("#submit").attr("disabled", "true");
+                });
+
+                // Command Buttons Junk
+                $(".command").click(function(data, element) {
+                    var $command = $(data.target).attr("name");
+                    var $arg = $("#arg").val() || "42";
+
+                    $scriptString.push([$command, $arg].join(" "));
+                    $script.push({opcode:$command, arg:$arg});
+                    console.log($scriptString);
+                    $("#script").html($scriptString.join("</br>"));
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <input type="button" id="fd" name="fd" value="forward"    class="command">
+        <input type="button" id="bw" name="bw" value="back"       class="command">
+        <input type="button" id="rt" name="rt" value="Right Turn" class="command">
+        <input type="button" id="lt" name="lt" value="Left Turn"  class="command">
+        <input type="button" id="pu" name="pu" value="Pen Up"     class="command">
+        <input type="button" id="pd" name="pd" value="Pen Down"   class="command">
+
+        <input type="text"   id="arg" name="arg" value="">
+
+        <p id="script">SCRIPT!</p>
+        <input type="button" id="submit" name="submit" value="submit">
+    </body>
+</html>
