@@ -11,7 +11,7 @@ int main(int argc,char** argv)
     int tty_fd;
     fd_set rdset;
 
-    unsigned char c = 'C';
+    unsigned char * c = malloc(sizeof(char) * 4);
 
 //    printf("Please start with %s /dev/ttyS1 (for example)\n",argv[0]);
 
@@ -33,9 +33,9 @@ int main(int argc,char** argv)
 
     while(1)
     {
-        if(read(tty_fd, &c, 1)>0)// try to read a byte from the tty
+        if(read(tty_fd, c, 1)>0)// try to read a byte from the tty
         {
-            printf("%c", c);
+            printf("%d", *c);
             break;
         }
     } 
