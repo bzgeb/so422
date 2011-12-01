@@ -10,7 +10,7 @@
 
                 // Submit Button Junk
                 $("#submit").click(function() {
-                    var $robotUrl = "test.php";
+                    var $robotUrl = "robot.php";
 
                     $.post($robotUrl, {script: $script}, function(data) {
                         console.log(data);

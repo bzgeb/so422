@@ -34,10 +34,10 @@
                 break;
         }
 
-        echo $operation["opcode"];
-        echo " ";
-        echo $operation["arg"];
-        echo "\n";
+//        echo $operation["opcode"];
+//        echo " ";
+//        echo $operation["arg"];
+//        echo "\n";
     }
 
     function wait($time) {
@@ -45,5 +45,9 @@
         usleep($time * 1000);
         echo "Done!";
         echo "\n";
+    }
+
+    function send($argument) {
+
     }
 ?>
