@@ -23,13 +23,13 @@
                 break;
             case "rt":
                 echo "Right Turn ho!\n";
-                send("140A-140B");
+                send("180A-180B");
                 wait($arg);
                 send("0A0B");
                 break;
             case "lt":
                 echo "Left Turn ho!\n";
-                send("-140A140B");
+                send("-180A180B");
                 wait($arg);
                 send("0A0B");
                 break;
