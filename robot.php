@@ -11,13 +11,13 @@
         switch ($opcode) {
             case "fd":
                 echo "Forward ho!\n";
-                send("140A140B");
+                send("200A200B");
                 wait($arg);
                 send("0A0B");
                 break;
             case "bw":
                 echo "Backward ho!\n";
-                send("-140A-140B");
+                send("-200A-200B");
                 wait($arg);
                 send("0A0B");
                 break;
@@ -47,7 +47,15 @@
 
     function wait($time) {
         echo "Waiting for " . $time . "...";
-        usleep($time * 1000);
+        $timeInMicroSeconds = $time * 1000;
+        $timeWaited = 0;
+        while ($timeWaited <= $timeInMicroSeconds)
+        {
+            poll();
+            usleep(500);
+            $timeWaited += 500;
+        }
+//        usleep($time * 1000);
         echo "Done!";
         echo "\n";
     }
