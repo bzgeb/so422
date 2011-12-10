@@ -11,27 +11,27 @@
         switch ($opcode) {
             case "fd":
                 echo "Forward ho!\n";
-                send("200A200B");
+                send("250A250B");
                 wait($arg);
-                send("0A0B");
+                send("AABB");
                 break;
             case "bw":
                 echo "Backward ho!\n";
-                send("-200A-200B");
+                send("-250A-250B");
                 wait($arg);
-                send("0A0B");
+                send("AABB");
                 break;
             case "rt":
                 echo "Right Turn ho!\n";
-                send("180A-180B");
+                send("250A-250B");
                 wait($arg);
-                send("0A0B");
+                send("AABB");
                 break;
             case "lt":
                 echo "Left Turn ho!\n";
-                send("-180A180B");
+                send("-250A250B");
                 wait($arg);
-                send("0A0B");
+                send("AABB");
                 break;
             case "pu":
                 echo "Pen Up!\n";
