@@ -33,7 +33,7 @@ int main(int argc,char** argv)
 
     while(1)
     {
-        if(read(tty_fd, c, 4) > 0)// try to read a byte from the tty
+        if(read(tty_fd, c, 1) > 0)// try to read a byte from the tty
         {
             printf("%s", c);
             break;
