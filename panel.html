@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Page</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="Author" content="Eric Chan" />
+	<script type="text/javascript" src="js/jquery-1.7.min.js"></script>
+	<script type="text/javascript">
+
+$(function() {
+	$("#stop").click(function() { $.get('logo_stop.php') });
+	$("#fd").click(function() { $.get('logo_fd.php') });
+	$("#bk").click(function() { $.get('logo_bk.php') });
+	$("#lt").click(function() { $.get('logo_lt.php') });
+	$("#rt").click(function() { $.get('logo_rt.php') });
+	$("#pu").click(function() { $.get('logo_penup.php') });
+	$("#pd").click(function() { $.get('logo_pendown.php') });
+
+})
+
+	</script>
+	<style type="text/css">
+	</style>
+</head>
+<body>
+
+<button id="stop">STOP</button>
+<button id="fd">Forward</button>
+<button id="bk">Backward</button>
+<button id="lt">Left</button>
+<button id="rt">Right</button>
+<button id="pu">Move</button>
+<button id="pd">Draw</button>
+
+<h1>Work queue</h1>
+<ul id="queue">
+</ul>
+
+
+</body>
+</html>

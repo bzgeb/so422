@@ -23,20 +23,13 @@ int main(int argc,char** argv)
     tio.c_cc[VMIN]=1;
     tio.c_cc[VTIME]=5;
 
-    tty_fd=open(argv[1], O_RDWR | O_NONBLOCK);      
+    tty_fd=open("/dev/ttyACM0", O_RDWR | O_NONBLOCK);      
     cfsetospeed(&tio,B9600);            //  baud
     cfsetispeed(&tio,B9600);            //  baud
 
     tcsetattr(tty_fd,TCSANOW,&tio);
 
-    write(tty_fd, argv[2], strlen(argv[2]));
-//
-//    while(1)
-//    {
-//        if(read(tty_fd, &c, 1)>0)// try to read a byte from the tty
-//        {
-//            printf("%c", c);
-//        }
-//    } 
+    write(tty_fd, "140A140B", 8);
     close(tty_fd);
+    return 0;
 }
