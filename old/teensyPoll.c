@@ -11,7 +11,7 @@ int main(int argc,char** argv)
     int tty_fd;
     fd_set rdset;
 
-//    unsigned char c = 'C';
+    unsigned char * c = malloc(sizeof(char) * 4);
 
 //    printf("Please start with %s /dev/ttyS1 (for example)\n",argv[0]);
 
@@ -23,20 +23,29 @@ int main(int argc,char** argv)
     tio.c_cc[VMIN]=1;
     tio.c_cc[VTIME]=5;
 
-    tty_fd=open(argv[1], O_RDWR | O_NONBLOCK);      
+    tty_fd=open("/dev/ttyACM0", O_WRONLY);      
+    if (tty_fd <= 0) {
+        return -1;
+    }
     cfsetospeed(&tio,B9600);            //  baud
     cfsetispeed(&tio,B9600);            //  baud
 
     tcsetattr(tty_fd,TCSANOW,&tio);
 
-    write(tty_fd, argv[2], strlen(argv[2]));
-//
-//    while(1)
-//    {
-//        if(read(tty_fd, &c, 1)>0)// try to read a byte from the tty
-//        {
-//            printf("%c", c);
-//        }
-//    } 
+    if (write(tty_fd, "1R", 2) != 2) 
+    {
+    }
+    
+
+    while(1)
+    {
+        if(read(tty_fd, c, 1) > 0)// try to read a byte from the tty
+        {
+//            printf("%s", c);
+            break;
+        }
+    } 
     close(tty_fd);
+
+    return 0;
 }
